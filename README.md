@@ -74,7 +74,8 @@ $ ./test.exe --sizex 256 --stoptime 15.677 -M
       starttime =   0.0000
        stoptime =  15.6770
       use stuff =        F
- use more stuff =        T```
+ use more stuff =        T
+```
 
 ```
 $ ./test.exe --sizex 256 --sizey 32 -S --stoptime 15.677 -M 
@@ -83,7 +84,8 @@ $ ./test.exe --sizex 256 --sizey 32 -S --stoptime 15.677 -M
       starttime =   0.0000
        stoptime =  15.6770
       use stuff =        T
- use more stuff =        T```
+ use more stuff =        T
+```
 
 ```
 $ ./test.exe --starttime -32.5 --sizex 256 --sizey 32 -S --stoptime 15.677 
@@ -92,4 +94,5 @@ $ ./test.exe --starttime -32.5 --sizex 256 --sizey 32 -S --stoptime 15.677
       starttime = -32.5000
        stoptime =  15.6770
       use stuff =        T
- use more stuff =        F```
+ use more stuff =        F
+```
