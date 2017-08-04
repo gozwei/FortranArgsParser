@@ -183,4 +183,40 @@ CONTAINS
 
         RETURN
     END FUNCTION
+
+
+    CHARACTER(len=128) FUNCTION ParseArgumentString(ArgName, UseDefault, Default, StatusCorrect, StatusIncorrect, PrintHelp, Help)
+        CHARACTER(len=*)    ArgName
+        LOGICAL             UseDefault
+        CHARACTER(len=*)    Default
+        INTEGER             StatusCorrect
+        INTEGER             StatusIncorrect
+        LOGICAL             PrintHelp
+        CHARACTER(len=*)    Help
+
+
+        CHARACTER(len=128)  :: ArgValue
+        INTEGER             :: SuccessFlag
+
+        IF (PrintHelp .eqv. .FALSE.) THEN   
+            CALL ParseArgument(ArgName, 1, ArgValue, SuccessFlag, StatusCorrect, StatusIncorrect, UseDefault)
+            IF (SuccessFlag == 1) THEN
+                ! read(ArgValue,*,iostat=stat) int
+                ParseArgumentString = ArgValue
+            ELSE
+                IF (UseDefault .eqv. .TRUE.) THEN
+                    ParseArgumentString = Default
+
+                ELSE
+                    ParseArgumentString = repeat("",128)
+                END IF
+            END IF
+        ELSE
+            write(*,*) Help
+        END IF
+
+        RETURN
+    END FUNCTION
+
+
 END MODULE ArgsParser

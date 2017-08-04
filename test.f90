@@ -1,5 +1,5 @@
 PROGRAM ParserTest
-    USE argsparser, ONLY: CheckForHelp, ParseArgumentInt, ParseArgumentReal, ParseArgumentLogical
+    USE argsparser, ONLY: CheckForHelp, ParseArgumentInt, ParseArgumentReal, ParseArgumentLogical, ParseArgumentString
 
     IMPLICIT NONE
 
@@ -10,6 +10,8 @@ PROGRAM ParserTest
 
     LOGICAL :: UseStuff
     LOGICAL :: UseMoreStuff
+
+    CHARACTER(len=128)  ::  FileName
 
     INTEGER :: StatusCorrect = 0
     INTEGER :: StatusIncorrect = 0
@@ -31,7 +33,10 @@ PROGRAM ParserTest
         UseStuff = ParseArgumentLogical("-S", .TRUE., .FALSE., StatusCorrect, StatusIncorrect,PrintHelp,&
                 &"-S: some logical flag")
         UseMoreStuff = ParseArgumentLogical("-M", .TRUE., .FALSE., StatusCorrect, StatusIncorrect,PrintHelp,&
-                &"-S: some logical flag")
+                &"-M: some logical flag")
+
+        FileName = ParseArgumentString("--filename", .FALSE., "", StatusCorrect, StatusIncorrect,PrintHelp,&
+                &"--filename #: some string")
 
 
         IF (PrintHelp) THEN
@@ -53,5 +58,7 @@ PROGRAM ParserTest
 
     write(*,"(A18,L8)") "use stuff = ", UseStuff
     write(*,"(A18,L8)") "use more stuff = ", UseMoreStuff
+
+    write(*,"(A18,A8)") "FileName = ", FileName
 
 END PROGRAM ParserTest
